@@ -1,0 +1,33 @@
+{
+    "name": "rbac",
+    "packageManager": "yarn@3.2.0",
+    "devDependencies": {
+        "@types/bun": "latest",
+        "@typescript-eslint/parser": "^8.8.0",
+        "eslint": "^9.11.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-jsdoc": "^50.3.1",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
+        "eslint-plugin-sonarjs": "^2.0.3",
+        "jiti": "^2.1.2",
+        "prettier": "3.3.3",
+        "ts-node": "^10.9.2",
+        "typescript": "5.5.x"
+    },
+    "scripts": {
+        "start": "bun src/main.ts",
+        "dev": "bun --watch src/main.ts",
+        "lint": "eslint src",
+        "test": "bun test ...",
+        "builder": "bun build ./src/main.ts --compile --outfile ./bin/rbac",
+        "prettify": "prettier \"{src,__{tests}__}/**/*.{ts,mts}\" --config .prettierrc --write"
+    },
+    "dependencies": {
+        "pino": "^9.4.0"
+    },
+    "engines": {
+        "node": ">=18.x"
+    },
+    "type": "module"
+}
