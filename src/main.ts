@@ -3,7 +3,7 @@ import { newLogger } from "./core/logger";
 const log = newLogger('rbac')
 
 const init = (): void => {
-	console.log('hello world changed');
+    log.info("hello world")
 	try {
 		run();
 	} catch (err) {
