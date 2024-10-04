@@ -1,18 +1,14 @@
-import { newLogger } from "./core/logger";
+import { newLogger } from './core/logger';
 
-const log = newLogger('rbac')
+const log = newLogger('rbac');
 
-const init = (): void => {
-    log.info("hello world")
-	try {
-		run();
-	} catch (err) {
-		log.error(`failed at run: ${err}`);
-	}
+const init = async () => {
+	log.info('hello world');
 };
 
-const run = (): void | Error => {
-	throw Error('asdfasdfasd');
-};
-
-init();
+init().catch(err => {
+    if (err instanceof Error) {
+        log.error(`failed: ${err}`)
+    }
+    process.exit(1)
+});
