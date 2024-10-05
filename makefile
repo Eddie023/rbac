@@ -1,7 +1,7 @@
 run:
 	bun start | pino-pretty
 
-docker-build:
+build:
 	docker build -t rbac:0.0.1 . 
 
 docker-run:
