@@ -27,7 +27,6 @@ COPY --from=prerelease  /usr/src/app/ .
 COPY --from=prerelease /usr/src/app/package.json . 
 
 # build the app 
-RUN bun build ./src/main.ts --compile --outfile rbac
+RUN bun run build 
 
-USER bun 
-ENTRYPOINT [ "./rbac" ]
+ENTRYPOINT [ "bun",  "run", "dist/main.js" ]
