@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    // "declaration": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
