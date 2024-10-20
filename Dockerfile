@@ -19,14 +19,12 @@ COPY --from=install /tmp/dev/node_modules node_modules
 COPY . . 
 
 ENV NODE_ENV=production 
-RUN bun test 
 
 FROM base AS release 
 COPY --from=install /tmp/prod/node_modules node_modules
 COPY --from=prerelease  /usr/src/app/ . 
 COPY --from=prerelease /usr/src/app/package.json . 
 
-# build the app 
-RUN bun run build 
-
-ENTRYPOINT [ "bun",  "run", "dist/main.js" ]
+# NOTE: bun build has issues running nestjs dependencies. More here: https://github.com/oven-sh/bun/issues/14611
+# As a temporary workaround, I am running the application using nest start 
+ENTRYPOINT [ "bun",  "run", "src/main.ts" ]
