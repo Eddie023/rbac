@@ -1,21 +1,25 @@
-import { Logger } from '@nestjs/common';
+import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
 
 const init = async () => {
-	const app = await NestFactory.create(AppModule);
+	console.info("intializing nest factory...")
+	const app = await NestFactory.create(AppModule, { bufferLogs: true });
+	app.useGlobalInterceptors(new LoggerErrorInterceptor)
+	app.useLogger(app.get(Logger));
+
 	await app.listen(process.env.PORT ?? 3000);
 };
 
 init().catch((err) => {
 	if (err instanceof Error) {
-		Logger.error(`failed: ${err}`);
+		console.error(`failed: ${err}`);
 	}
 	process.exit(1);
 });
 
 process.on('SIGINT', () => {
-	Logger.warn('Received SIGINT, exiting...');
+	console.warn('Received SIGINT, exiting...');
 	process.exit(1);
 });
