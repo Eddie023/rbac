@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -14,9 +14,14 @@ export class UserService {
 		private usersRepository: Repository<User>
 	) {}
 
-	create(createUserDto: CreateUserDto) {
-		console.log(createUserDto);
-		return 'This action adds a new user';
+	async create(createUserDto: CreateUserDto) {
+		const exist = await this.usersRepository.existsBy({ id: createUserDto.id });
+
+		if (exist) {
+			throw new BadRequestException(`user with id: ${createUserDto.id} already exists`);
+		}
+
+		return this.usersRepository.insert(createUserDto);
 	}
 
 	findAll() {
