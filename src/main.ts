@@ -1,12 +1,12 @@
-import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
 import { NestFactory } from '@nestjs/core';
+import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
 
 import { AppModule } from './app.module';
 
 const init = async () => {
-	console.info("intializing nest factory...")
+	console.info('intializing nest factory...');
 	const app = await NestFactory.create(AppModule, { bufferLogs: true });
-	app.useGlobalInterceptors(new LoggerErrorInterceptor)
+	app.useGlobalInterceptors(new LoggerErrorInterceptor());
 	app.useLogger(app.get(Logger));
 
 	await app.listen(process.env.PORT ?? 3000);
