@@ -1,13 +1,13 @@
-import { test, expect, describe, mock, beforeEach } from "bun:test";
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { beforeEach, describe, expect, jest, mock, test } from 'bun:test';
 import { Repository } from 'typeorm';
+
 import { User } from './user.entity';
+import { UserService } from './user.service';
 
 const mockUserRepository = {
-	find: mock(),
-	findBy: mock()
+	findOneBy: mock()
 };
 
 describe('UserService', () => {
@@ -35,13 +35,20 @@ describe('UserService', () => {
 
 	describe('get user by id', () => {
 		test('should return a user if found', async () => {
-			const want = { id: '1', email: 'testing@gmail.com' };
-			userRepository.findBy.mockResolvedValue(want);
+			const want: User = {
+				id: '1',
+				email: 'testing@gmail.com',
+				firstName: 'steve',
+				lastName: 'jobs',
+				isVerified: true,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			};
+			userRepository.findOneBy.mockResolvedValue(want);
 
 			const got = await userService.findOne('1');
-      console.log('got', got)
 			expect(got).toEqual(want);
-			expect(userRepository.findBy).toHaveBeenCalledWith({ id: '1' });
+			expect(userRepository.findOneBy).toHaveBeenCalledWith({ id: '1' });
 		});
 	});
 });
