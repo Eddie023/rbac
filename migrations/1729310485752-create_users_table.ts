@@ -11,12 +11,10 @@ export class CreateUsersTable1729304634236 implements MigrationInterface {
 				created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 				updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 				is_verified BOOLEAN NOT NULL DEFAULT FALSE);`
-		)
+		);
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
-		await queryRunner.query(
-			`DROP TABLE IF EXISTS users;`
-		)
+		await queryRunner.query(`DROP TABLE IF EXISTS users;`);
 	}
 }
