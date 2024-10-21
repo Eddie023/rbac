@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { beforeEach, describe, expect, mock, test } from 'bun:test';
 
-import { UserController } from './user.controller';
 import { User } from './entities/user.entity';
+import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
 const mockUserRepository = {

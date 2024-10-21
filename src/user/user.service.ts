@@ -34,7 +34,7 @@ export class UserService {
 		return this.usersRepository.findOneBy({ id });
 	}
 
-	// TODO: use TyeORM functionalities for many to many relation.
+	// FIXME: use TyeORM functionalities for many to many relation.
 	async getUserGroups(userId: string) {
 		const userGroups = await this.usersRepository.query(
 			`

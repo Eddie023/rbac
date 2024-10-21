@@ -1,14 +1,14 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { LocalAuthGuard } from 'src/auth/localauth.guard';
+import { Roles } from 'src/role/role.decorator';
+import { Role } from 'src/role/role.enums';
+import { RolesGuard } from 'src/role/role.guards';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
-import { Roles } from 'src/role/role.decorator';
-import { Role } from 'src/role/role.enums';
-import { AuthGuard } from 'src/auth/localauth.guard';
-import { RolesGuard } from 'src/role/role.guards';
 
 @Controller('users')
-@UseGuards(AuthGuard, RolesGuard)
+@UseGuards(LocalAuthGuard, RolesGuard)
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 

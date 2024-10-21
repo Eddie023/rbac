@@ -18,19 +18,19 @@ services:
       # - ./migrations/000001_create_initial_tables.up.sql:/docker-entrypoint-initdb.d/db_init.sql
       - ./pg_data:/var/lib/postgresql/data
 
-  # server:
-  #   depends_on: 
-  #     - db 
-  #   container_name: "server"
-  #   build: . 
-  #   ports: 
-  #     - 3000:3000
-  #   volumes:
-  #     - .:/usr/src/app
-  #   environment:
-  #     - DB_HOST=db
-  #     - DB_PORT=5432
-  #     - DB_USER=root
-  #     - DB_PASSWORD=postgres
-  #     - DB_NAME=postgres
+  server:
+    depends_on: 
+      - db 
+    container_name: "server"
+    build: . 
+    ports: 
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=root
+      - DB_PASSWORD=postgres
+      - DB_NAME=postgres
     
