@@ -3,7 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { beforeEach, describe, expect, jest, mock, test } from 'bun:test';
 import { Repository } from 'typeorm';
 
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
 const mockUserRepository = {
@@ -52,3 +52,4 @@ describe('UserService', () => {
 		});
 	});
 });
+ 

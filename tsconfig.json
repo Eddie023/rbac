@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "ESNext", // NOTE: need to change to CommonJS for typeorm cmds to work. 
+    "target": "ESNext",
     "moduleResolution": "Bundler",
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
     "sourceMap": true,
     "baseUrl": "./",
     "outDir": "./dist",

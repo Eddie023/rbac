@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 
 import { AppController } from './app.controller';
-import { DatabaseModule } from './database/module';
+import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 
 @Module({
