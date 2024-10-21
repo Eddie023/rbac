@@ -1,4 +1,5 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn, JoinColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from 'typeorm';
+
 import { Group } from './group.entity';
 
 @Entity('users')
@@ -24,9 +25,7 @@ export class User {
 	@Column({ default: false, name: 'is_verified' })
 	isVerified: boolean;
 
-	@ManyToMany(type => Group)
-	@JoinTable({name: "user_group"})
-	groups: Group[]
+	@ManyToMany(() => Group)
+	@JoinTable({ name: 'user_group' })
+	groups: Group[];
 }
-
-

@@ -34,17 +34,17 @@ export class UserService {
 		return this.usersRepository.findOneBy({ id });
 	}
 
-  // TODO: use TyeORM functionalities for many to many relation. 
+	// TODO: use TyeORM functionalities for many to many relation.
 	async getUserGroups(userId: string) {
 		const userGroups = await this.usersRepository.query(
-      `
+			`
       SELECT u.id, u.email, groups.id as group_id, groups.name, groups.description 
       FROM users u 
       INNER JOIN user_group ug ON ug.user_id = u.id 
       INNER JOIN groups ON ug.group_id = groups.id
       WHERE u.id = '${userId}';
       `
-    )
+		);
 		return userGroups;
 	}
 }

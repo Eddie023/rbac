@@ -24,6 +24,6 @@ export class UserController {
 
 	@Get(':id/groups')
 	getAllUserGroups(@Param('id') id: string) {
-		return this.userService.getUserGroups(id)
+		return this.userService.getUserGroups(id);
 	}
 }

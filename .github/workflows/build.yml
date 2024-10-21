@@ -17,11 +17,11 @@ jobs:
             - uses: oven-sh/setup-bun@v2
             - run: bun install 
 
-            - name: Build 
-              run: make build 
-
             - name: Lint
               run: bun run lint
+
+            - name: Build 
+              run: make build 
 
             - name: Test 
               run: bun test 

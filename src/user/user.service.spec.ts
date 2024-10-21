@@ -42,7 +42,8 @@ describe('UserService', () => {
 				lastName: 'jobs',
 				isVerified: true,
 				createdAt: new Date(),
-				updatedAt: new Date()
+				updatedAt: new Date(),
+				groups: []
 			};
 			userRepository.findOneBy.mockResolvedValue(want);
 
@@ -52,4 +53,3 @@ describe('UserService', () => {
 		});
 	});
 });
- 
